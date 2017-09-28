@@ -65,5 +65,5 @@
                 this.chart.setOption(nValue);
             }
         }
-    }
+    };
 </script>
