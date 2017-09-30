@@ -5,7 +5,6 @@
         bottom: 0;
         left: 0;
         right: 0;
-
     }
 </style>
 
@@ -22,7 +21,7 @@
             return {};
         },
         mounted() {
-
+            this.$store.dispatch('init');
         },
         beforeDestroy() {
 

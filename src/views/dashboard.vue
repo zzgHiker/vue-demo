@@ -106,12 +106,12 @@
                 <div class="user-info">
                     <Dropdown placement="bottom-end">
 						<span>
-							asdfa
+							<span>{{user.username}}</span>
 							<Avatar icon="person"></Avatar>
 							<Icon type="arrow-down-b" color="lightgray"></Icon>
 						</span>
 
-                        <Dropdown-menu slot="list">
+                        <DropdownMenu slot="list">
                             <DropdownItem @click.native="modifyPassword">
                                 <Icon type="key"></Icon>
                                 <span>修改密码</span>
@@ -120,7 +120,7 @@
                                 <Icon type="log-out" color="red"></Icon>
                                 <span>退出</span>
                             </DropdownItem>
-                        </Dropdown-menu>
+                        </DropdownMenu>
                     </Dropdown>
                 </div>
             </div>
@@ -178,6 +178,8 @@
 </template>
 
 <script>
+    import {mapState, mapGetters} from 'vuex';
+
     export default {
         data() {
             return {
@@ -210,8 +212,8 @@
             },
             iconSize() {
                 return this.toggleState ? 24 : 14;
-            }
-
+            },
+            ...mapGetters(['user'])
         },
         methods: {
             toggle() {
@@ -230,7 +232,11 @@
                 this.$Message.info('点击了取消');
             },
             logout() {
-                this.$router.push('login');
+                this.$store.dispatch('logout')
+                    .then(() => {
+                        this.$Message.success('User Logout!');
+                        this.$router.push('login');
+                    });
             }
         }
     };

@@ -11,7 +11,8 @@ module.exports = {
         path: path.join(__dirname, './dist')
     },
     module: {
-        rules: [{
+        rules: [
+            {
                 test: /\.vue$/,
                 loader: 'vue-loader',
                 options: {
@@ -37,8 +38,7 @@ module.exports = {
             {
                 test: /iview\/.*?js$/,
                 loader: 'babel-loader'
-            },
-            {
+            }, {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/
@@ -50,7 +50,6 @@ module.exports = {
                     fallback: 'style-loader'
                 })
             },
-
             {
                 test: /\.less/,
                 use: ExtractTextPlugin.extract({
@@ -58,7 +57,6 @@ module.exports = {
                     fallback: 'style-loader'
                 })
             },
-
             {
                 test: /\.sass/,
                 use: ExtractTextPlugin.extract({
@@ -66,9 +64,8 @@ module.exports = {
                     fallback: 'style-loader'
                 })
             },
-
             {
-                test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
+                test: /\.(gif|jpg|jpeg|png|woff|svg|eot|ttf)\??.*$/,
                 loader: 'url-loader?limit=1024'
             },
             {

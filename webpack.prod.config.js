@@ -27,7 +27,8 @@ module.exports = merge(webpackBaseConfig, {
         }),
         new webpack.DefinePlugin({
             'process.env': {
-                NODE_ENV: '"production"'
+                NODE_ENV: '"production"',
+                BASE_URL: '"http://m.delta.com.cn"'
             }
         }),
         new webpack.optimize.UglifyJsPlugin({

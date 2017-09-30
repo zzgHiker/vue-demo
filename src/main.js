@@ -7,6 +7,8 @@ import Util from './libs/util';
 import App from './app.vue';
 import 'iview/dist/styles/iview.css';
 
+import store from './store';
+
 import VueI18n from 'vue-i18n';
 import Locales from './locale';
 import zhLocale from 'iview/src/locale/lang/zh-CN';
@@ -49,15 +51,6 @@ router.afterEach(() => {
     iView.LoadingBar.finish();
     window.scrollTo(0, 0);
 });
-
-
-const store = new Vuex.Store({
-    state: {},
-    getters: {},
-    mutations: {},
-    actions: {}
-});
-
 
 new Vue({
     el: '#app',

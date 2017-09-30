@@ -22,6 +22,12 @@ module.exports = merge(webpackBaseConfig, {
             filename: '[name].css',
             allChunks: true
         }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: '"development"',
+                BASE_URL: '"http://mt.delta.com.cn"'
+            }
+        }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendors',
             filename: 'vendors.js'
