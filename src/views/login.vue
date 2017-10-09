@@ -83,7 +83,7 @@
                     ],
                     password: [
                         {required: true, message: '请填写登陆密码', trigger: 'blur'},
-                        {type: 'string', min: 6, message: '密码长度不能小于6位', trigger: 'blur'}
+                        {type: 'string', min: 5, message: '密码长度不能小于5位', trigger: 'blur'}
                     ]
                 }
             };

@@ -106,7 +106,7 @@
                 <div class="user-info">
                     <Dropdown placement="bottom-end">
 						<span>
-							<span>{{user.username}}</span>
+							<span>{{user.name}}</span>
 							<Avatar icon="person"></Avatar>
 							<Icon type="arrow-down-b" color="lightgray"></Icon>
 						</span>

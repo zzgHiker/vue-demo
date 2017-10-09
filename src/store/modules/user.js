@@ -2,7 +2,8 @@ const state = {
     ticket: '',
     username: '',
     password: '',
-    remember: []
+    remember: [],
+    name: ''
 };
 
 const getters = {
@@ -27,6 +28,7 @@ const mutations = {
         state.username = '';
         state.password = '';
         state.remember = [];
+        state.name = '';
     },
 
     updateUser: (state, data) => {

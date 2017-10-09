@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import Qs from 'qs';
 
+// 模拟jQuery Form提交
 const formAxios = Axios.create({
     baseURL: process.env.BASE_URL,
     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
@@ -9,10 +10,12 @@ const formAxios = Axios.create({
     }]
 });
 
+let axiosInstance = process.env.NODE_ENV === 'production' ? formAxios : Axios;
+
 export default {
     post: (url, params) => {
         return new Promise((resolve, reject) => {
-            formAxios.post(url, params)
+            axiosInstance.post(url, params)
                 .then(res => {
                     if (res.data && res.data.status === 'OK') {
                         resolve(res.data.data);

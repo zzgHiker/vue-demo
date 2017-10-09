@@ -8,11 +8,14 @@ import App from './app.vue';
 import 'iview/dist/styles/iview.css';
 
 import store from './store';
+import Mock from './mock';
 
 import VueI18n from 'vue-i18n';
 import Locales from './locale';
 import zhLocale from 'iview/src/locale/lang/zh-CN';
 import enLocale from 'iview/src/locale/lang/en-US';
+
+Mock.bootstrap();
 
 Vue.use(VueRouter);
 Vue.use(Vuex);

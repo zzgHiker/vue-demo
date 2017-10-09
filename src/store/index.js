@@ -46,7 +46,7 @@ export default new Vuex.Store({
 
                     dispatch('updateUser', {
                         ...user,
-                        ticket: data.ticket
+                        ...data
                     }).then(() => {
                         commit('save');
                         resolve();

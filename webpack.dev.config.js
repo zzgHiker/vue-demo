@@ -25,7 +25,7 @@ module.exports = merge(webpackBaseConfig, {
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: '"development"',
-                BASE_URL: '"http://mt.delta.com.cn"'
+                BASE_URL: '""'
             }
         }),
         new webpack.optimize.CommonsChunkPlugin({
