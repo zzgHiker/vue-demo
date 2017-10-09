@@ -11,7 +11,13 @@ const routers = [
         meta: {
             title: ''
         },
-        component: (resolve) => require(['./views/dashboard.vue'], resolve)
+        component: (resolve) => require(['./views/dashboard.vue'], resolve),
+        children: [
+            {
+                path: '',
+                component: (resolve) => require(['./views/users.vue'], resolve)
+            }
+        ]
     },
     {
         path: '/login',

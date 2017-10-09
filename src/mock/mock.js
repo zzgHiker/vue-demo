@@ -1,6 +1,6 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import {AuthUsers} from './data/users';
+import {AuthUsers, Users} from './data/users';
 
 export default {
     bootstrap() {
@@ -21,10 +21,9 @@ export default {
 
         // Login
         mock.onPost('/login')
-            .reply(request => {
-                console.log(request);
-                let {username, password} = JSON.parse(request.data);
-                return new Promise((resolve, reject) => {
+            .reply(req => {
+                let {username, password} = JSON.parse(req.data);
+                return new Promise((resolve) => {
                     let loginUser = null;
                     let hasUser = AuthUsers.some(user => {
                         if (user.username === username && user.password === password) {
@@ -40,6 +39,13 @@ export default {
                         resolve([200, {status: 'FAIL', data: 'User or password not correct'}]);
                     }
 
+                });
+            });
+
+        mock.onPost('/users')
+            .reply(req => {
+                return new Promise((resolve) => {
+                    resolve([200, {status: 'OK', data: Users}]);
                 });
             });
 

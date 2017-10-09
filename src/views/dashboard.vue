@@ -148,8 +148,9 @@
                 </Breadcrumb>
             </div>
             <div class="layout-content">
-                <div class="layout-content-main">内容区域</div>
-
+                <div class="layout-content-main">
+                    <router-view></router-view>
+                </div>
             </div>
             <div class="layout-copy">
                 2017-2018 &copy; Delta

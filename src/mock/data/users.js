@@ -33,4 +33,4 @@ for (let i = 0; i < 100; i++) {
     });
 }
 
-export {AuthUsers};
+export {AuthUsers, Users};

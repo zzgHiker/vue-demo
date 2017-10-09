@@ -13,7 +13,6 @@ const debugMode = process.env.NODE_ENV !== 'production';
 console.log(process.env);
 export default new Vuex.Store({
     state: {
-        userInfo: {}
     },
     getters: {
         user: state => {
