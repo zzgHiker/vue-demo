@@ -1,6 +1,10 @@
-<style></style>
+<style>
+    .ivu-table table {
+        width: 100% !important;
+    }
+</style>
 <template>
-    <Table border :columns="columns" :data="data"></Table>
+    <Table border stripe :columns="columns" :data="data"></Table>
 </template>
 <script>
     import api from '../api';
