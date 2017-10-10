@@ -1,16 +1,10 @@
+import Mock from 'mockjs';
+
 const state = {
-    ticket: '',
-    username: '',
-    password: '',
-    remember: [],
-    name: ''
+    all: []
 };
 
-const getters = {
-    username: state => state.username,
-    password: state => state.password,
-    remember: state => state.remember
-};
+const getters = {};
 
 const actions = {
     updateUser: ({commit}, data) => {
@@ -19,25 +13,38 @@ const actions = {
 
     clearUser: ({commit}) => {
         commit('clearUser');
+    },
+
+    addNewUser: ({commit}) => {
+        commit('addNewUser');
+    },
+
+    removeUser: ({commit}, index) => {
+        commit('removeUser', index);
     }
 };
 
 const mutations = {
     clearUser: state => {
-        state.ticket = '';
-        state.username = '';
-        state.password = '';
-        state.remember = [];
-        state.name = '';
+        state.all = [];
     },
 
     updateUser: (state, data) => {
-        if (data && typeof data === 'object')
-            for (let k in data) {
-                if (data.hasOwnProperty(k) && state.hasOwnProperty(k)) {
-                    state[k] = data[k];
-                }
-            }
+        state.all = data;
+    },
+
+    addNewUser: state => {
+        state.all.push({
+            id: Mock.mock('@increment'),
+            username: Mock.Random.name(),
+            name: Mock.Random.cname(),
+            birth: Mock.Random.date(),
+            sex: Mock.Random.boolean()
+        });
+    },
+
+    removeUser: (state, index) => {
+        state.all.splice(index, 1);
     }
 };
 

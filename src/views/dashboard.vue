@@ -44,6 +44,11 @@
         color: white;
     }
 
+    .layout-main {
+        position: relative;
+        padding-bottom: 50px;
+    }
+
     .layout-content {
         min-height: 200px;
         margin-top: 15px;
@@ -59,8 +64,11 @@
 
     .layout-copy {
         text-align: center;
-        padding: 10px 0 20px;
+        padding: 10px 0 15px;
         color: #9ea7b4;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
     }
 
     .logo-sm {
@@ -106,7 +114,7 @@
                 <div class="user-info">
                     <Dropdown placement="bottom-end">
 						<span>
-							<span>{{user.name}}</span>
+							<span>{{loginUser.name}}</span>
 							<Avatar icon="person"></Avatar>
 							<Icon type="arrow-down-b" color="lightgray"></Icon>
 						</span>
@@ -139,12 +147,22 @@
                 </MenuItem>
             </Menu>
             </Col>
-            <Col :span="spanRight">
+            <Col :span="spanRight" class="layout-main">
             <div class="layout-breadcrumb">
                 <Breadcrumb>
-                    <BreadcrumbItem href="#">首页</BreadcrumbItem>
-                    <BreadcrumbItem href="#">应用中心</BreadcrumbItem>
-                    <BreadcrumbItem>某应用</BreadcrumbItem>
+                    <BreadcrumbItem href="/">首页</BreadcrumbItem>
+                    <template v-for="(item, index) in breadcrumbItems">
+                        <template v-if="index<breadcrumbItems.length-1">
+                            <BreadcrumbItem :href="item.path">
+                                {{item.text}}
+                            </BreadcrumbItem>
+                        </template>
+                        <template v-else>
+                            <BreadcrumbItem>
+                                {{item.text}}
+                            </BreadcrumbItem>
+                        </template>
+                    </template>
                 </Breadcrumb>
             </div>
             <div class="layout-content">
@@ -153,13 +171,13 @@
                 </div>
             </div>
             <div class="layout-copy">
-                2017-2018 &copy; Delta
+                2017-2018 &copy; MyCompany
             </div>
             </Col>
         </Row>
 
 
-        <Modal v-model="modal1" title="修改密码" @on-ok.prevent="comfirm" @on-cancel="cancel">
+        <Modal v-model="modal1" title="修改密码" @on-ok="comfirm" @on-cancel="cancel">
             <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="100">
                 <FormItem label="原密码" prop="oldPassword">
                     <Input v-model="formValidate.oldPassword" placeholder="请输入原始密码"></Input>
@@ -174,7 +192,7 @@
         </Modal>
 
 
-        <BackTop></BackTop>
+        <BackTop/>
     </div>
 </template>
 
@@ -214,7 +232,17 @@
             iconSize() {
                 return this.toggleState ? 24 : 14;
             },
-            ...mapGetters(['user'])
+            breadcrumbItems() {
+                let items = [];
+                for (let route of this.$route.matched) {
+                    items.push({
+                        path: route.path,
+                        text: route.meta.title
+                    });
+                }
+                return items;
+            },
+            ...mapGetters(['loginUser'])
         },
         methods: {
             toggle() {
@@ -226,6 +254,8 @@
             },
 
             comfirm() {
+
+                console.log(this.breadcrumbItems);
                 return false;
             },
             cancel() {

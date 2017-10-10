@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
+import loginUser from './modules/login-user'
 import user from './modules/user';
 
 import api from '../api';
@@ -10,22 +11,23 @@ Vue.use(Vuex);
 
 const debugMode = process.env.NODE_ENV !== 'production';
 
-console.log(process.env);
 export default new Vuex.Store({
-    state: {
-    },
+    state: {},
     getters: {
+        loginUser: state => {
+            return state.loginUser;
+        },
         user: state => {
             return state.user;
         }
     },
     mutations: {
         init: state => {
-            state.user = JSON.parse(localStorage.getItem('UserInfo')) || {};
+            state.loginUser = JSON.parse(localStorage.getItem('UserInfo')) || {};
         },
 
         save: state => {
-            localStorage.setItem('UserInfo', JSON.stringify(state.user));
+            localStorage.setItem('UserInfo', JSON.stringify(state.loginUser));
         }
     },
     actions: {
@@ -43,7 +45,7 @@ export default new Vuex.Store({
                     if (user.remember.length === 0)
                         delete user['password'];
 
-                    dispatch('updateUser', {
+                    dispatch('updateLoginUser', {
                         ...user,
                         ...data
                     }).then(() => {
@@ -58,7 +60,7 @@ export default new Vuex.Store({
         },
 
         logout: ({dispatch, commit}) => {
-            dispatch('clearUser')
+            dispatch('clearLoginUser')
                 .then(() => {
                     commit('save');
                 });
@@ -66,7 +68,8 @@ export default new Vuex.Store({
 
     },
     modules: {
-        user
+        user,
+        loginUser
     },
     strict: debugMode
 });

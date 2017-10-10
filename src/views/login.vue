@@ -90,13 +90,10 @@
         },
 
         computed: {
-            ...mapGetters(['user'])
+            ...mapGetters(['loginUser'])
         },
 
         mounted() {
-            this.formLogin.username = this.user.username;
-            this.formLogin.password = this.user.password;
-            this.formLogin.remember = this.user.remember;
         },
 
         methods: {

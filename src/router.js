@@ -2,19 +2,22 @@ const routers = [
     {
         path: '/',
         meta: {
-            title: ''
+            title: '首页'
         },
         component: (resolve) => require(['./views/index.vue'], resolve)
     },
     {
         path: '/dashboard',
         meta: {
-            title: ''
+            title: 'Dashboard'
         },
         component: (resolve) => require(['./views/dashboard.vue'], resolve),
         children: [
             {
                 path: '',
+                meta: {
+                    title: '用户列表'
+                },
                 component: (resolve) => require(['./views/users.vue'], resolve)
             }
         ]
@@ -22,7 +25,7 @@ const routers = [
     {
         path: '/login',
         meta: {
-            title: ''
+            title: '用户登陆'
         },
         component: (resolve) => require(['./views/login.vue'], resolve)
     }
